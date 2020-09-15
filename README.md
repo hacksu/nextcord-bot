@@ -39,6 +39,19 @@ Last step before coding; we have to tell Discord to make the bot account for us.
 2: When the application is created, go to the "Bot" tab and select "Add Bot" and then "Yes, do it!"
 
 3: Click on the "Copy" button that appears. This will copy the bot's Token to your clipboard, which is essentially the bot's username and password. Do not share this token with anyone else. 
+
+## Adding the bot to the server
+Navigate back to your bot's Application page and follow these steps:
+
+1: Go to the OAuth2 tab
+
+2: From the checklist, select "bot"
+
+3: Copy the URL it gives you, and paste it into your browser
+
+4: From the list of servers, select the server you want to add the bot to, and then click "Authorize". If prompted, solve a CAPTCHA.
+
+You should now see the bot in the member list, but it will say it is offline. To make it appear online, we have to actually code the bot's logic!
 ## Coding the bot
 Now to write the bot. This lesson recommends using Python IDLE (which comes with your installation of Python) to code, but any IDE will work.
 
