@@ -34,7 +34,7 @@ You should now see a blank server in your server list!
 ## Now to create the bot
 Last step before coding; we have to tell Discord to make the bot account for us. Go to the [Discord Developer Portal](https://discordapp.com/developers/applications) and follow these steps:
 
-1: Select "New Application". This tutorial is going to make a bot that tells the time, so when prompted, name your application "Time Bot".
+1: Select "New Application", and name your bot whatever you would like.
 
 2: When the application is created, go to the "Bot" tab and select "Add Bot" and then "Yes, do it!"
 
