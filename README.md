@@ -1,17 +1,17 @@
 # Hacksu-Lesson-Discord-Bot-Easy
 ## Intro
 Discord, for those who are unfamilar, is a free text and voice chatting platform. You will need a Discord account in order to make and interact with a bot. You can create an account free at their [website](https://discord.com). You can either use Discord through the Desktop Application or through the browser. Additionally, you will need Python 3.8 installed. You can download Python from [here](https://python.org)
-## Installing discord.py
-In order to be able to code your bot, you will need to install the Discord.py module. To do so, follow these steps.
+## Installing nextcord
+In order to be able to code your bot, you will need to install the nextcord module. To do so, follow these steps.
 
 1: Open up your computer's command line interface. For Windows, this is a program called Command Prompt (or Powershell if you would prefer). For Mac and Linux, this is called Terminal. 
 2: Execute the following command
 ```
-pip install discord
+pip install nextcord
 ```
 If Python was installed correctly, you should see output that looks somewhat like (yours will probably look slightly different) to this:
 ![pip successful](https://i.imgur.com/fQpGOzT.png)
-If you don't see this and/or you get an error stating "pip is not recognized as a command" then you will need to unistall and then reinstall Python. When you reinstall, make SURE that you check the box that says "Add Python to your PATH". If you do not, you will not be able to use the pip command to get Discord.py.
+If you don't see this and/or you get an error stating "pip is not recognized as a command" then you will need to unistall and then reinstall Python. When you reinstall, make SURE that you check the box that says "Add Python to your PATH". If you do not, you will not be able to use the pip command to get nextcord.
 ## Creating a Server
 Now that you are able to make a bot, you need to make a place for it to live. To get started, open up Discord and follow these steps:
 
@@ -57,17 +57,17 @@ Now to write the bot. This lesson recommends using Python IDLE (which comes with
 
 Create a new folder where you want your code to be, and then inside that folder create a new file called "bot.py".
 
-The first step is to add the include statements. By default, Python can't access the Discord.py module until we import it. Add ```import discord``` to the file. Additionally, we will also need the asyncio and datetime libraries, so add ```import asyncio``` and ```import random``` to the file.
+The first step is to add the include statements. By default, Python can't access the nextcord module until we import it. Add ```import nextcord``` to the file. Additionally, we will also need the asyncio and datetime libraries, so add ```import asyncio``` and ```import random``` to the file.
 
 Your file should now look like this:
 ```
-import discord
+import nextcord
 import asyncio
 import random
 ```
 
-The next step is to create a class that inherits from the discord.Client class. Creating an inherited class allows us to make our own personal bot by adding our own features. Don't worry if you don't know exactly what an inherited class means, it isn't neccessary to creating your bot.
-Type ```class MyClient(discord.Client):``` to your file, and then hit enter. Make sure your cursor is also tabbed over after you hit enter.
+The next step is to create a class that inherits from the nextcord.Client class. Creating an inherited class allows us to make our own personal bot by adding our own features. Don't worry if you don't know exactly what an inherited class means, it isn't neccessary to creating your bot.
+Type ```class MyClient(nextcord.Client):``` to your file, and then hit enter. Make sure your cursor is also tabbed over after you hit enter.
 
 This class is where we are going to add all of our bot's functionality. First, we need to have the bot awaken and perform actions when it sees that someone has sent a message. To do this, we will create a function called ```on_message```.
 
@@ -116,12 +116,12 @@ Run your bot, go to the new server you made, and type ```/ping```. Your bot shou
 
 To catch up, your code should look like this:
 ```
-import discord
+import nextcord
 import asyncio
 import random
 
 
-class MyClient(discord.Client):
+class MyClient(nextcord.Client):
 
     async def on_message(self,message):
         if(message.content.startswith("/")):
@@ -175,7 +175,7 @@ async def scan(self,message):
         msg = "The list of all online members are:\n```"
 
         for member in message.guild.members:
-            if(member.status == discord.Status.online):
+            if(member.status == nextcord.Status.online):
                 msg += str(member)+"\n"
         msg += "```"
         await message.channel.send(msg)
@@ -219,4 +219,4 @@ if("😎" in message.content):
 Now, whenever our bot sees a message that contains 😎, it will react to that image with 😎.
 
 ## Unique Challenge
-Our bot is finally done, but that doesn't mean we have exhausted everything it can do! Bots are limitless with what they can do, and you can do basically anything you want with them! As this week's Unique Bingo Challenge, read through the official Discord.py documentation (found [here](https://discordpy.readthedocs.io/en/latest/api.html)), and implement a feature that wasn't used in this lesson! This can be something like posting an image, giving itself a nickname, anything you want! Show a leader your bot in action and the new code you made, and you can check off that unique feature section on your Bingo Card!
+Our bot is finally done, but that doesn't mean we have exhausted everything it can do! Bots are limitless with what they can do, and you can do basically anything you want with them! As this week's Unique Bingo Challenge, read through the official nextcord documentation (found [here](https://docs.nextcord.dev/en/latest/api.html)), and implement a feature that wasn't used in this lesson! This can be something like posting an image, giving itself a nickname, anything you want! Show a leader your bot in action and the new code you made, and you can check off that unique feature section on your Bingo Card!
