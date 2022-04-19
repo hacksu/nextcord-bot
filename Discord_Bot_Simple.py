@@ -1,9 +1,9 @@
-import discord
+import nextcord
 import asyncio
 import random
 
 
-class MyClient(discord.Client):
+class MyClient(nextcord.Client):
 
     
     #ON MESSAGE
@@ -48,7 +48,7 @@ class MyClient(discord.Client):
         msg = "The list of all online members are:\n```"
 
         for member in message.guild.members:
-            if(member.status == discord.Status.online):
+            if(member.status == nextcord.Status.online):
                 msg += str(member)+"\n"
         msg += "```"
         await message.channel.send(msg)
@@ -64,7 +64,7 @@ class MyClient(discord.Client):
 
     #WHEN READY
     async def on_ready(self):
-        await self.change_presence(activity=discord.Game(name = "My First Bot!"))
+        await self.change_presence(activity=nextcord.Game(name = "My First Bot!"))
         print("Successfully set Bot's game status")
 
 
