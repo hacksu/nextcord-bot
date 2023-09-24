@@ -1,77 +1,66 @@
 import nextcord
-import asyncio
 import random
+import asyncio
+from nextcord.ext import commands
 
+description = "Basic example bot"
+intents = nextcord.Intents.default()
+intents.members = True
+intents.message_content = True
 
-class MyClient(nextcord.Client):
+bot = commands.Bot(command_prefix="!", description=description, intents=intents)
 
-    
-    #ON MESSAGE
-    async def on_message(self,message):
-        if(message.content.startswith("/")):
-            await self.process_commands(message)
+@bot.event
+async def on_message(message):
+    if("😎" in message.content):
+        await message.add_reaction("😎")
+    await bot.process_commands(message)
 
-        if("😎" in message.content):
-            await message.add_reaction("😎")
+#WHEN READY
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=nextcord.Game(name = "My First Bot!"))
+    print("Successfully set Bot's game status")
 
+@bot.command(help="pong!")
+async def ping(ctx):
+    await ctx.send("pong")
 
-    #PROCESS COMMANDS
-    async def process_commands(self,message):
-        command = message.content.split()[0].lower()
-        #Command List Here
-        if(command == "/ping"):
-            await self.pong(message)
-        elif(command == "/8ball"):
-            await self.eightBall(message)
-        elif(command == "/scan"):
-            await self.scan(message)
-        elif(command == "/help"):
-            await self.help(message)
+@bot.command(help="ask the 8ball a question")
+async def eightball(ctx):
+    RESPONSES = [
+        "Yes",
+        "No",
+        "Maybe",
+        "That's up to you",
+        "Ask again later",
+        #Add more here!
+        ]
+    msg = random.choice(RESPONSES)
+    await ctx.send(msg)
 
+@bot.command(help="see who is online!")
+async def scan(ctx):
+    msg = "The list of all online members are:\n```"
 
-    async def pong(self,message):
-        await message.channel.send("pong")
+    for member in ctx.guild.members:
+        if(member.status == nextcord.Status.online):
+            msg += str(member)+"\n"
+    msg += "```"
+    await ctx.send(msg)
 
-    async def eightBall(self,message):
-        RESPONSES = [
-            "Yes",
-            "No",
-            "Maybe",
-            "That's up to you",
-            "Ask again later",
-            #Add more here!
-            ]
-        msg = random.choice(RESPONSES)
-        await message.channel.send(msg)
-
-    async def scan(self,message):
-        msg = "The list of all online members are:\n```"
-
-        for member in message.guild.members:
-            if(member.status == nextcord.Status.online):
-                msg += str(member)+"\n"
-        msg += "```"
-        await message.channel.send(msg)
-
-    async def help(self,message):
-        await message.channel.send("""I have the following commands:```
-/help - shows this message
-/ping - pong!
-/8ball - ask the 8Ball a question
-/scan - see who is online!
-```""")
+# @bot.command()
+# async def help(message):
+#     await message.channel.send("""I have the following commands:```
+# /help - shows this message
+# /ping - pong!
+# /8ball - ask the 8Ball a question
+# /scan - see who is online!
+# ```""")
           
 
-    #WHEN READY
-    async def on_ready(self):
-        await self.change_presence(activity=nextcord.Game(name = "My First Bot!"))
-        print("Successfully set Bot's game status")
-
-
-
 print("Starting Bot")
-bot = MyClient()
-file = open("TOKEN.txt",'r')
+file = open("../test/bot_token.txt",'r')#change this to the path of your token
 TOKEN = file.read()
 #print(TOKEN)
 bot.run(TOKEN)
