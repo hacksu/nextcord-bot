@@ -81,6 +81,7 @@ Your file should now look like this:
 import nextcord
 import asyncio
 import random
+from nextcord.ext import commands
 ````
 
 The next step is to set some variables which will describe the behavior of our bot, and then to create a nextcord bot object using these variables. 
