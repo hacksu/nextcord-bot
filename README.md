@@ -59,7 +59,7 @@ Navigate back to your bot's Application page and follow these steps:
 
 2: Under the URL generator tab, select "bot" in the scopes checklist
 
-3: Select "Administrator" in the bot permissions checklist that appears
+3: Select "Send Messages", "Read Message History", and "Add Reactions" in the bot permissions checklist that appears
 
 4: Copy the URL it gives you, and paste it into your browser
 
