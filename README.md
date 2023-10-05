@@ -106,8 +106,8 @@ Add this below the bot variable:
 
 ````
 @bot.event
-async def on_message(self,message):
-    await self.process_commands(message)
+async def on_message(message):
+    await bot.process_commands(message)
 ````
 
 This block of code will be run everytime our bot sees a message. The bot checks the beginning of the message's text, and sees if it starts with the prefix we defined earlier. If it does, the `process_commands` function handles the rest of the message. This function is built into nextcord, so we don't have to worry about writing it ourselves.  
@@ -144,8 +144,9 @@ To catch up, your code should look like this:
 
 ````
 import nextcord
-import asyncio
 import random
+import asyncio
+from nextcord.ext import commands
 
 description = "my bot"
 intents = nextcord.Intents.default()
@@ -173,7 +174,7 @@ There are 3 more commands we want to add, the first of which is a Magic 8 Ball!
 
 ````
 @bot.command()
-async def eightBall(self,message):
+async def eightBall(ctx):
     RESPONSES = [
         "Yes",
         "No",
@@ -183,7 +184,7 @@ async def eightBall(self,message):
         #Add more here!
         ]
     msg = random.choice(RESPONSES)
-    await message.channel.send(msg)
+    await ctx.send(msg)
 ````
 
 In this function, we declare a list of a bunch of strings, each being a possible message that the bot can respond with. We then set `msg` equal to a random one using the `random.choice` function, and finally we send the random message back to the channel the command was called in. Launch your bot and give it a try!
