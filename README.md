@@ -174,7 +174,7 @@ There are 3 more commands we want to add, the first of which is a Magic 8 Ball!
 
 ````
 @bot.command()
-async def eightBall(ctx):
+async def eightball(ctx):
     RESPONSES = [
         "Yes",
         "No",
